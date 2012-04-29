@@ -1,0 +1,10 @@
+ _  _  __    ____  _  _  ____  ___  _   _  ____  ____  
+( \/ )/__\  (  _ \( \( )(_  _)/ __)( )_( )( ___)(  _ \ 
+ \  //(__)\  )   / )  (  _)(_ \__ \ ) _ (  )__)  )(_) )
+  \/(__)(__)(_)\_)(_)\_)(____)(___/(_) (_)(____)(____/  by denford.
+
+
+  If the browsed page is served from a varnish enabled server a badge will display if the page is indeed cached or not.
+
+  To add to your chrome browser click the link below.
+  https://github.com/dibs/Varnished/raw/master/varnished.user.js
