@@ -26,12 +26,6 @@ function addJQuery(callback) {
 
 }
 
-function addFont() {
-	'use strict';
-	var f = document.createElement("link");
-	f.setAttribute("rel", "stylesheet");
-	f.setAttribute("href", "http://fonts.googleapis.com/css?family=Ubuntu:400,700");
-}
 
 function init() {
 	'use strict';
@@ -48,10 +42,31 @@ function init() {
 		// location,
 		req = new XMLHttpRequest();
 
+	function addFont() {
+		'use strict';
+		var f = document.createElement("link");
+		f.setAttribute("rel", "stylesheet");
+		f.setAttribute("href", "http://fonts.googleapis.com/css?family=Ubuntu:400,700");
+	}
+
+
 	//get headers
 	req.open('GET', document.location, false);
 	req.send(null);
 	headers = req.getAllResponseHeaders().toLowerCase();
+	
+	
+	//is page varnish served?
+	varnex = /via\: 1\.1\ varnish/;
+	if (headers.search(varnex) === -1) {
+		//not varnished, pack up and go home.
+		return false;
+	}
+	
+	console.log('##### HEADERS #####');
+	console.log(headers);
+	console.log('##### /HEADERS #####');
+
 
 	//styles
 	varnished = {
@@ -90,17 +105,8 @@ function init() {
 	varnished_location = {
 		'text-align':			'right'
 	};
-
-	console.log('##### HEADERS #####');
-	console.log(headers);
-	console.log('##### /HEADERS #####');
-
-	//is page varnish served?
-	varnex = /via\: 1\.1\ varnish/;
-	if (headers.search(varnex) === -1) {
-		//not varnished, pack up and go home.
-		return false;
-	}
+		
+	addFont();
 
 	//create the badge
 	badge = $('<div />').addClass('varnished');
@@ -138,4 +144,3 @@ function init() {
 }
 
 addJQuery(init);
-addFont();
