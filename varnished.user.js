@@ -43,30 +43,26 @@ function init() {
 		req = new XMLHttpRequest();
 
 	function addFont() {
-		'use strict';
 		var f = document.createElement("link");
 		f.setAttribute("rel", "stylesheet");
 		f.setAttribute("href", "http://fonts.googleapis.com/css?family=Ubuntu:400,700");
 	}
 
-
 	//get headers
 	req.open('GET', document.location, false);
 	req.send(null);
 	headers = req.getAllResponseHeaders().toLowerCase();
-	
-	
+
 	//is page varnish served?
 	varnex = /via\: 1\.1\ varnish/;
 	if (headers.search(varnex) === -1) {
 		//not varnished, pack up and go home.
 		return false;
 	}
-	
-	console.log('##### HEADERS #####');
-	console.log(headers);
-	console.log('##### /HEADERS #####');
 
+	// console.log('##### HEADERS #####');
+	// console.log(headers);
+	// console.log('##### /HEADERS #####');
 
 	//styles
 	varnished = {
@@ -105,13 +101,13 @@ function init() {
 	varnished_location = {
 		'text-align':			'right'
 	};
-		
+
 	addFont();
 
 	//create the badge
 	badge = $('<div />').addClass('varnished');
 
-	//varnished. roll out the badge.
+	//roll out the badge.
 	$('html').append(badge);
 
 	//embelish badge
@@ -123,6 +119,7 @@ function init() {
 	$('.varnished p').css(varnished_p);
 	$('.varnished .cache').css(varnished_cache);
 	$('.varnished .location').css(varnished_location);
+
 	//is it cached?
 	cachex = /x\-cacheable\:\ yes\:forced/;
 	if (headers.search(cachex) === -1) {
