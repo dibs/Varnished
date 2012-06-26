@@ -3,7 +3,7 @@
 // @namespace		varnished
 // @include			*
 // @author			denford
-// @description		Adds a varnish state indicator to chrmome pages
+// @description		Adds a varnish state indicator to chrome pages
 // @version		0.1
 // @match http://*/*
 // @match https://*/*
@@ -57,86 +57,88 @@ function init() {
 	varnex = /via\: 1\.1\ varnish/;
 	if (headers.search(varnex) === -1) {
 		//not varnished, pack up and go home.
-		return false;
-	}
-
-	// console.log('##### HEADERS #####');
-	// console.log(headers);
-	// console.log('##### /HEADERS #####');
-
-	//styles
-	varnished = {
-		'background':			'#FC0',
-		'border':				'2px solid #fff',
-		'width':				'150px',
-		'-webkit-box-shadow':	'0px 2px 4px 1px rgba(0, 0, 0, 1)',
-		'-webkit-transform':	'rotate(90deg)',
-		'font-family':			'Ubuntu',
-		'opacity':				'0.6',
-		'position':				'fixed',
-		'top':					'300px',
-		'right':				'-50px',
-		'height':				'50px'
-	};
-	varnished_h1 = {
-		'font-size':			'30px',
-		'color':				'#efefef',
-		'padding':				'0',
-		'margin':				'0',
-		'line-height':			'30px',
-		'text-align':			'center'
-	};
-	varnished_p = {
-		'font-size':			'15px',
-		'color':				'#efefef',
-		'padding':				'0',
-		'margin':				'0',
-		'line-height':			'15px',
-		'text-align':			'center'
-	};
-	varnished_cache = {
-		'float':				'left',
-		'text-align':			'left'
-	};
-	varnished_location = {
-		'text-align':			'right'
-	};
-
-	addFont();
-
-	//create the badge
-	badge = $('<div />').addClass('varnished');
-
-	//roll out the badge.
-	$('html').append(badge);
-
-	//embelish badge
-	$('.varnished').append("<h1>Varnished</h1>");
-
-	//style it up 
-	$('.varnished').css(varnished);
-	$('.varnished h1').css(varnished_h1);
-	$('.varnished p').css(varnished_p);
-	$('.varnished .cache').css(varnished_cache);
-	$('.varnished .location').css(varnished_location);
-
-	//is it cached?
-	cachex = /x\-cacheable\:\ yes\:forced/;
-	if (headers.search(cachex) === -1) {
-		//console.log('NOT cached ' + headers.search(cachex));
-		cacheStat = '#800';
+		//return false; //seems to break js in chrome if false is returned.
+		return;
 	} else {
-		//console.log('CACHED! ' + headers.search(cachex));
-		cacheStat = '#080';
-	}
-	//which server is it coming from?
-	cachex = /x\-cacheable\:\ yes\:forced/;
-	if (headers.search(cachex) === -1) {
-		//console.log('NOT cached ' + headers.search(cachex));
-		$('.varnished').css({'background': '#FC0'});
-	} else {
-		//console.log('CACHED! ' + headers.search(cachex));
-		$('.varnished').css({'background': '#080'});
+
+		// console.log('##### HEADERS #####');
+		// console.log(headers);
+		// console.log('##### /HEADERS #####');
+
+		//styles
+		varnished = {
+			'background':			'#FC0',
+			'border':				'2px solid #fff',
+			'width':				'150px',
+			'-webkit-box-shadow':	'0px 2px 4px 1px rgba(0, 0, 0, 1)',
+			'-webkit-transform':	'rotate(90deg)',
+			'font-family':			'Ubuntu',
+			'opacity':				'0.6',
+			'position':				'fixed',
+			'top':					'300px',
+			'right':				'-50px',
+			'height':				'50px'
+		};
+		varnished_h1 = {
+			'font-size':			'30px',
+			'color':				'#efefef',
+			'padding':				'0',
+			'margin':				'0',
+			'line-height':			'30px',
+			'text-align':			'center'
+		};
+		varnished_p = {
+			'font-size':			'15px',
+			'color':				'#efefef',
+			'padding':				'0',
+			'margin':				'0',
+			'line-height':			'15px',
+			'text-align':			'center'
+		};
+		varnished_cache = {
+			'float':				'left',
+			'text-align':			'left'
+		};
+		varnished_location = {
+			'text-align':			'right'
+		};
+
+		addFont();
+
+		//create the badge
+		badge = $('<div />').addClass('varnished');
+
+		//roll out the badge.
+		$('html').append(badge);
+
+		//embelish badge
+		$('.varnished').append("<h1>Varnished</h1>");
+
+		//style it up 
+		$('.varnished').css(varnished);
+		$('.varnished h1').css(varnished_h1);
+		$('.varnished p').css(varnished_p);
+		$('.varnished .cache').css(varnished_cache);
+		$('.varnished .location').css(varnished_location);
+
+		//is it cached?
+		cachex = /x\-cacheable\:\ yes\:forced/;
+		if (headers.search(cachex) === -1) {
+			//console.log('NOT cached ' + headers.search(cachex));
+			cacheStat = '#800';
+		} else {
+			//console.log('CACHED! ' + headers.search(cachex));
+			cacheStat = '#080';
+		}
+		//which server is it coming from?
+		cachex = /x\-cacheable\:\ yes\:forced/;
+		if (headers.search(cachex) === -1) {
+			//console.log('NOT cached ' + headers.search(cachex));
+			$('.varnished').css({'background': '#FC0'});
+		} else {
+			//console.log('CACHED! ' + headers.search(cachex));
+			$('.varnished').css({'background': '#080'});
+		}
 	}
 }
 
