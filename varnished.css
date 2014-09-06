@@ -1,0 +1,42 @@
+.varnished {
+	background:	#FC0;
+	border:	2px solid #fff;
+	width: 150px;
+	-webkit-box-shadow:	0px 2px 4px 1px rgba(0, 0, 0, 1);
+	-webkit-transform:	rotate(90deg);
+	font-family: Ubuntu;
+	opacity: 0.8;
+	position: fixed;
+	top: 300px;
+	right: -50px;
+	height:	50px;
+}
+.varnished h1 {
+	font-size: 30px;
+	color: #efefef;
+	padding: 0;
+	margin: 0;
+	line-height: 30px;
+	text-align: center;
+}
+.varnished p {
+	font-size: 15px;
+	color: #efefef;
+	padding: 0;
+	margin: 0;
+	line-height: 15px;
+	text-align: center;
+}
+.varnished .cache {
+	float: left;
+	text-align: left;
+}
+.varnished .location {
+	text-align:	right;
+}
+.varnished .grenn{
+	background: #080;
+}
+.varnished .orange{
+	background: #FC0;
+}

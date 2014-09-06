@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "Varnished",
+  "description": "This extension shows a tag on the site if it is coming from a varnish cache.",
+  "version": "1.0",
+  "permissions": ["<all_urls>", "webRequest"],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "varnished.html"
+  },
+  "background": {
+    "scripts": ["varnish-scanner.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "css": ["varnished.css"],
+      "js": ["varnished.js"]
+    }
+  ]
+}
